@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import Ecommerce from "../../Images/Ecommerce Platform.jpg";
 import Restaurant from "../../Images/Resturant.jpg";
+import Annotation from "../../Images/Annotation 2025-07-23 150401.png"
+import Annotation2 from "../../Images/Annotation 2025-07-23 150633.png"; // Ensure this image exists
 
 // ✅ Correct image paths or place images in /public/Images/ folder
 
@@ -51,7 +53,7 @@ function WebsitesDesigns() {
             category: "Dashboard",
             description:
                 "Interactive dashboard for portfolio management with real-time analytics.",
-            image: Ecommerce,
+            image: Annotation,
             technologies: ["React", "Chart.js", "Firebase"],
             liveUrl: "https://example.com",
             githubUrl: "https://github.com/example",
@@ -63,7 +65,7 @@ function WebsitesDesigns() {
             category: "Social",
             description:
                 "Full-stack social media application with real-time messaging and posts.",
-            image: Restaurant,
+            image: Annotation2,
             technologies: ["MERN", "Socket.io", "JWT"],
             liveUrl: "https://example.com",
             githubUrl: "https://github.com/example",

@@ -83,7 +83,7 @@ function HeroSection() {
     <div className="w-full min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/Images/Hero_Img.avif"
+          src="../../Images/Hero_Img.avif"
           alt="backgroundImage"
           className="w-full h-full object-cover"
           loading="eager"

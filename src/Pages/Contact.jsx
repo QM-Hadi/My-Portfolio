@@ -1,7 +1,5 @@
 "use client"
 import { useState } from "react"
-import type React from "react"
-
 import { motion, AnimatePresence } from "framer-motion"
 import {
   Mail,
@@ -23,9 +21,8 @@ function ContactPage() {
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [submitStatus, setSubmitStatus] = useState("idle") // "idle" | "success" | "error"
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -61,7 +58,6 @@ function ContactPage() {
     },
   }
 
-  // Contact information with enhanced styling
   const contactInfo = [
     {
       icon: Mail,
@@ -95,8 +91,7 @@ function ContactPage() {
     },
   ]
 
-  // Handle form input changes
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -104,20 +99,17 @@ function ContactPage() {
     }))
   }
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus("idle")
 
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      // Create mailto link with form data
       const subject = encodeURIComponent("Contact Form - New Message")
       const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
       )
       window.location.href = `mailto:mudassirmutalib@gmail.com?subject=${subject}&body=${body}`
 
@@ -132,14 +124,11 @@ function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative overflow-hidden">
-      {/* Background Elements */}
+      {/* Background Effects */}
       <div className="absolute inset-0">
-        {/* Gradient Orbs */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl"></div>
-
-        {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
         </div>
@@ -147,7 +136,7 @@ function ContactPage() {
 
       <div className="relative z-10 px-4 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto">
-          {/* Enhanced Header */}
+          {/* Header */}
           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-16">
             <motion.div variants={itemVariants} className="mb-6">
               <span className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-6 py-3 text-sm font-medium text-blue-200">
@@ -155,13 +144,11 @@ function ContactPage() {
                 Let's Connect
               </span>
             </motion.div>
-
             <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
                 Get in Touch
               </span>
             </motion.h1>
-
             <motion.p
               variants={itemVariants}
               className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
@@ -171,9 +158,8 @@ function ContactPage() {
             </motion.p>
           </motion.div>
 
-          {/* Main Content Grid */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-            {/* Enhanced Contact Info */}
+            {/* Contact Info */}
             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
               <motion.div variants={itemVariants}>
                 <h2 className="text-2xl sm:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -185,7 +171,6 @@ function ContactPage() {
                 </p>
               </motion.div>
 
-              {/* Enhanced Contact Cards */}
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.a
@@ -215,7 +200,6 @@ function ContactPage() {
                 ))}
               </div>
 
-              {/* Availability Status */}
               <motion.div
                 variants={itemVariants}
                 className="p-6 bg-gradient-to-r from-green-600/10 to-emerald-600/10 backdrop-blur-sm border border-green-500/20 rounded-2xl"
@@ -231,7 +215,7 @@ function ContactPage() {
               </motion.div>
             </motion.div>
 
-            {/* Enhanced Contact Form */}
+            {/* Contact Form */}
             <motion.div variants={cardVariants} initial="hidden" animate="visible" className="relative">
               <div className="bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-3xl p-8 shadow-2xl">
                 <div className="mb-8">
@@ -242,7 +226,6 @@ function ContactPage() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Name Field */}
                   <div>
                     <label htmlFor="name" className="flex items-center gap-2 text-sm font-medium mb-3 text-gray-300">
                       <User className="w-4 h-4" />
@@ -260,7 +243,6 @@ function ContactPage() {
                     />
                   </div>
 
-                  {/* Email Field */}
                   <div>
                     <label htmlFor="email" className="flex items-center gap-2 text-sm font-medium mb-3 text-gray-300">
                       <Mail className="w-4 h-4" />
@@ -278,7 +260,6 @@ function ContactPage() {
                     />
                   </div>
 
-                  {/* Message Field */}
                   <div>
                     <label htmlFor="message" className="flex items-center gap-2 text-sm font-medium mb-3 text-gray-300">
                       <MessageSquare className="w-4 h-4" />
@@ -296,7 +277,6 @@ function ContactPage() {
                     />
                   </div>
 
-                  {/* Submit Button */}
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
@@ -319,7 +299,6 @@ function ContactPage() {
                   </motion.button>
                 </form>
 
-                {/* Status Messages */}
                 <AnimatePresence>
                   {submitStatus === "success" && (
                     <motion.div
@@ -335,7 +314,6 @@ function ContactPage() {
                       </div>
                     </motion.div>
                   )}
-
                   {submitStatus === "error" && (
                     <motion.div
                       initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -355,7 +333,7 @@ function ContactPage() {
             </motion.div>
           </div>
 
-          {/* Bottom CTA Section */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

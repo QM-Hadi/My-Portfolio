@@ -85,7 +85,7 @@ function HeroSection() {
     <div className="w-full min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/Hero_Img.avif"
+          src="/Images/Hero_Img.avif"
           alt="background"
           fill
           style={{ objectFit: "cover", zIndex: -1 }}

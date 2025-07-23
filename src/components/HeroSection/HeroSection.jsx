@@ -1,13 +1,11 @@
 "use client"
-import { useRouter } from "next/navigation" // ✅ Next.js navigation
+import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react"
-// ✅ Import background image
 
 function HeroSection() {
-  const router = useRouter() // ✅ Next.js router
+  const router = useRouter()
 
-  // Social links configuration
   const socialLinks = [
     {
       icon: Github,
@@ -29,7 +27,6 @@ function HeroSection() {
     },
   ]
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -53,12 +50,10 @@ function HeroSection() {
     },
   }
 
-  // Handle resume download - FIXED
   const handleResumeDownload = () => {
     try {
       const link = document.createElement("a")
-      // ✅ FIXED: Use actual resume file path when you have it
-      link.href = "/Resume.pdf" // Replace with your actual resume path
+      link.href = "/Resume.pdf"
       link.download = "Muhammad_Muddassir_Resume.pdf"
       document.body.appendChild(link)
       link.click()
@@ -69,48 +64,36 @@ function HeroSection() {
     }
   }
 
-  // Handle hire me action
   const handleHireMe = () => {
     const subject = encodeURIComponent("Hire Inquiry - Let's Work Together!")
     const body = encodeURIComponent(
-      "Hi Muhammad,\n\nI would like to discuss a project with you. Please let me know your availability.\n\nBest regards",
+      "Hi Muhammad,\n\nI would like to discuss a project with you. Please let me know your availability.\n\nBest regards"
     )
     window.location.href = `mailto:mudassirmutalib@gmail.com?subject=${subject}&body=${body}`
   }
 
-  // Handle contact navigation - FIXED for Next.js
   const handleContactNavigation = () => {
     try {
-      router.push("/contact") // ✅ Next.js navigation
+      router.push("/contact")
     } catch (error) {
-      // Fallback to email if navigation fails
       window.location.href = "mailto:mudassirmutalib@gmail.com"
     }
   }
 
   return (
     <div className="w-full min-h-screen relative overflow-hidden">
-      {/* ✅ FIXED: Background Image Section */}
       <div className="absolute inset-0 z-0">
-        {/* 
-          ✅ For your local development, replace the src with:
-          src={backgroundImage || "/placeholder.svg"}
-          
-          But for v0, we'll use a placeholder that works
-        */}
         <img
           src="../../Images/Hero_Img.avif"
           alt="backgroundImage"
           className="w-full h-full object-cover"
           loading="eager"
         />
-        {/* Enhanced gradient overlays for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
       </div>
 
-      {/* Enhanced Navbar */}
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -142,7 +125,6 @@ function HeroSection() {
         </div>
       </motion.nav>
 
-      {/* Hero Content */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -150,7 +132,6 @@ function HeroSection() {
         className="relative z-20 flex flex-col items-center justify-center min-h-screen text-center text-white px-4 sm:px-6 lg:px-8"
       >
         <div className="max-w-5xl mx-auto">
-          {/* Enhanced Greeting Badge */}
           <motion.div variants={itemVariants} className="mb-6">
             <span className="inline-flex items-center gap-2 bg-blue-600/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-6 py-3 text-sm font-medium text-blue-200 shadow-lg">
               <span className="animate-pulse">👋</span>
@@ -159,7 +140,6 @@ function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Enhanced Main Heading */}
           <motion.h1
             variants={itemVariants}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight"
@@ -178,7 +158,6 @@ function HeroSection() {
             </span>
           </motion.h1>
 
-          {/* Enhanced Subtitle with Tech Stack */}
           <motion.div variants={itemVariants} className="mb-10">
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium mb-4 text-gray-200 max-w-4xl mx-auto leading-relaxed">
               Frontend & MERN Stack Developer
@@ -187,7 +166,6 @@ function HeroSection() {
               Crafting beautiful, responsive web experiences with modern technologies
             </p>
 
-            {/* Tech Stack Pills */}
             <div className="flex flex-wrap justify-center gap-2 mt-6">
               {["React", "Node.js", "MongoDB", "Express", "Next.js", "TypeScript"].map((tech, index) => (
                 <motion.span
@@ -203,7 +181,6 @@ function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Enhanced Action Buttons */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12"
@@ -230,7 +207,6 @@ function HeroSection() {
             </motion.button>
           </motion.div>
 
-          {/* Enhanced Social Links */}
           <motion.div variants={itemVariants} className="flex justify-center gap-4">
             {socialLinks.map((social, index) => {
               const Icon = social.icon
@@ -252,7 +228,6 @@ function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Enhanced Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

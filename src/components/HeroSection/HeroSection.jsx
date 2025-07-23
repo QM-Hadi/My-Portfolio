@@ -1,11 +1,10 @@
-"use client"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { motion } from "framer-motion"
-import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ REPLACED useRouter with useNavigate
+import { motion } from "framer-motion";
+import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react";
 
 function HeroSection() {
-  const router = useRouter()
+  const navigate = useNavigate(); // ✅ Updated
 
   const socialLinks = [
     {
@@ -26,7 +25,7 @@ function HeroSection() {
       href: "mailto:mudassirmutalib@gmail.com",
       color: "hover:bg-red-800",
     },
-  ]
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -37,7 +36,7 @@ function HeroSection() {
         delayChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -49,37 +48,37 @@ function HeroSection() {
         ease: "easeOut",
       },
     },
-  }
+  };
 
   const handleResumeDownload = () => {
     try {
-      const link = document.createElement("a")
-      link.href = "/placeholder.svg?height=800&width=600&text=Muhammad+Muddassir+Resume"
-      link.download = "Muhammad_Muddassir_Resume.pdf"
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
+      const link = document.createElement("a");
+      link.href = "/placeholder.svg?height=800&width=600&text=Muhammad+Muddassir+Resume";
+      link.download = "Muhammad_Muddassir_Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (error) {
-      console.error("Download failed:", error)
-      alert("Resume download will be available soon!")
+      console.error("Download failed:", error);
+      alert("Resume download will be available soon!");
     }
-  }
+  };
 
   const handleHireMe = () => {
-    const subject = encodeURIComponent("Hire Inquiry - Let's Work Together!")
+    const subject = encodeURIComponent("Hire Inquiry - Let's Work Together!");
     const body = encodeURIComponent(
       "Hi Muhammad,\n\nI would like to discuss a project with you. Please let me know your availability.\n\nBest regards"
-    )
-    window.location.href = `mailto:mudassirmutalib@gmail.com?subject=${subject}&body=${body}`
-  }
+    );
+    window.location.href = `mailto:mudassirmutalib@gmail.com?subject=${subject}&body=${body}`;
+  };
 
   const handleContactNavigation = () => {
     try {
-      router.push("/contact")
+      navigate("/contact"); // ✅ Replaced router.push
     } catch (error) {
-      window.location.href = "mailto:mudassirmutalib@gmail.com"
+      window.location.href = "mailto:mudassirmutalib@gmail.com";
     }
-  }
+  };
 
   return (
     <div className="w-full min-h-screen relative overflow-hidden">
@@ -209,7 +208,7 @@ function HeroSection() {
 
           <motion.div variants={itemVariants} className="flex justify-center gap-4">
             {socialLinks.map((social, index) => {
-              const Icon = social.icon
+              const Icon = social.icon;
               return (
                 <motion.a
                   key={index}
@@ -223,7 +222,7 @@ function HeroSection() {
                 >
                   <Icon className="w-6 h-6 text-white" />
                 </motion.a>
-              )
+              );
             })}
           </motion.div>
         </div>
@@ -249,7 +248,7 @@ function HeroSection() {
         </motion.div>
       </motion.div>
     </div>
-  )
+  );
 }
 
-export default HeroSection
+export default HeroSection;

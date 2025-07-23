@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ REPLACED useRouter with useNavigate
-import { motion } from "framer-motion";
-import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react";
-import backgroundImage from "../../Images/Hero_Img.avif"; // Example background image import
+"use client"
+import { useRouter } from "next/navigation" // ✅ Next.js navigation
+import { motion } from "framer-motion"
+import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react"
+import backgroundImage from "../../Images/Hero_Img.avif" // ✅ Placeholder image for local development
 
 function HeroSection() {
-  const navigate = useNavigate(); // ✅ Updated
+  const router = useRouter() // ✅ Next.js router
 
+  // Social links configuration
   const socialLinks = [
     {
       icon: Github,
@@ -26,8 +27,9 @@ function HeroSection() {
       href: "mailto:mudassirmutalib@gmail.com",
       color: "hover:bg-red-800",
     },
-  ];
+  ]
 
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -37,7 +39,7 @@ function HeroSection() {
         delayChildren: 0.1,
       },
     },
-  };
+  }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -49,51 +51,66 @@ function HeroSection() {
         ease: "easeOut",
       },
     },
-  };
+  }
 
+  // Handle resume download - FIXED
   const handleResumeDownload = () => {
     try {
-      const link = document.createElement("a");
-      link.href = {backgroundImage};
-      link.download = "Muhammad_Muddassir_Resume.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const link = document.createElement("a")
+      // ✅ FIXED: Use actual resume file path when you have it
+      link.href = "/Resume.pdf" // Replace with your actual resume path
+      link.download = "Muhammad_Muddassir_Resume.pdf"
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
     } catch (error) {
-      console.error("Download failed:", error);
-      alert("Resume download will be available soon!");
+      console.error("Download failed:", error)
+      alert("Resume download will be available soon!")
     }
-  };
+  }
 
+  // Handle hire me action
   const handleHireMe = () => {
-    const subject = encodeURIComponent("Hire Inquiry - Let's Work Together!");
+    const subject = encodeURIComponent("Hire Inquiry - Let's Work Together!")
     const body = encodeURIComponent(
-      "Hi Muhammad,\n\nI would like to discuss a project with you. Please let me know your availability.\n\nBest regards"
-    );
-    window.location.href = `mailto:mudassirmutalib@gmail.com?subject=${subject}&body=${body}`;
-  };
+      "Hi Muhammad,\n\nI would like to discuss a project with you. Please let me know your availability.\n\nBest regards",
+    )
+    window.location.href = `mailto:mudassirmutalib@gmail.com?subject=${subject}&body=${body}`
+  }
 
+  // Handle contact navigation - FIXED for Next.js
   const handleContactNavigation = () => {
     try {
-      navigate("/contact"); // ✅ Replaced router.push
+      router.push("/contact") // ✅ Next.js navigation
     } catch (error) {
-      window.location.href = "mailto:mudassirmutalib@gmail.com";
+      // Fallback to email if navigation fails
+      window.location.href = "mailto:mudassirmutalib@gmail.com"
     }
-  };
+  }
 
   return (
     <div className="w-full min-h-screen relative overflow-hidden">
+      {/* ✅ FIXED: Background Image Section */}
       <div className="absolute inset-0 z-0">
+        {/* 
+          ✅ For your local development, replace the src with:
+          src={backgroundImage || "/placeholder.svg"}
+          
+          But for v0, we'll use a placeholder that works
+        */}
         <img
-          src="/placeholder.svg?height=1080&width=1920&text=Professional+Developer+Workspace"
-          alt="Professional workspace background"
+          src={backgroundImage}
+          alt="backgroundImage"
           className="w-full h-full object-cover"
           loading="eager"
         />
+        {/* Enhanced gradient overlays for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
       </div>
 
+      {/* Enhanced Navbar */}
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -125,6 +142,7 @@ function HeroSection() {
         </div>
       </motion.nav>
 
+      {/* Hero Content */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -132,6 +150,7 @@ function HeroSection() {
         className="relative z-20 flex flex-col items-center justify-center min-h-screen text-center text-white px-4 sm:px-6 lg:px-8"
       >
         <div className="max-w-5xl mx-auto">
+          {/* Enhanced Greeting Badge */}
           <motion.div variants={itemVariants} className="mb-6">
             <span className="inline-flex items-center gap-2 bg-blue-600/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-6 py-3 text-sm font-medium text-blue-200 shadow-lg">
               <span className="animate-pulse">👋</span>
@@ -140,13 +159,14 @@ function HeroSection() {
             </span>
           </motion.div>
 
+          {/* Enhanced Main Heading */}
           <motion.h1
             variants={itemVariants}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight"
           >
             Hey, I'm{" "}
             <span className="relative">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 Muhammad Muddassir
               </span>
               <motion.div
@@ -158,22 +178,24 @@ function HeroSection() {
             </span>
           </motion.h1>
 
+          {/* Enhanced Subtitle with Tech Stack */}
           <motion.div variants={itemVariants} className="mb-10">
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium mb-4 text-gray-200 max-w-4xl mx-auto leading-relaxed">
               Frontend & MERN Stack Developer
             </p>
-            <p className="text-base sm:text-lg md:text-xl text-gray-300 font-normal max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 font-normal max-w-3xl mx-auto mb-6">
               Crafting beautiful, responsive web experiences with modern technologies
             </p>
 
+            {/* Tech Stack Pills */}
             <div className="flex flex-wrap justify-center gap-2 mt-6">
-              {["React", "Node.js", "MongoDB", "Express", "Next.js"].map((tech, index) => (
+              {["React", "Node.js", "MongoDB", "Express", "Next.js", "TypeScript"].map((tech, index) => (
                 <motion.span
                   key={tech}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2 + index * 0.1 }}
-                  className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm text-gray-300 border border-white/20"
+                  className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm text-gray-300 border border-white/20 hover:bg-white/20 transition-all duration-300"
                 >
                   {tech}
                 </motion.span>
@@ -181,6 +203,7 @@ function HeroSection() {
             </div>
           </motion.div>
 
+          {/* Enhanced Action Buttons */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12"
@@ -207,9 +230,10 @@ function HeroSection() {
             </motion.button>
           </motion.div>
 
+          {/* Enhanced Social Links */}
           <motion.div variants={itemVariants} className="flex justify-center gap-4">
             {socialLinks.map((social, index) => {
-              const Icon = social.icon;
+              const Icon = social.icon
               return (
                 <motion.a
                   key={index}
@@ -223,11 +247,12 @@ function HeroSection() {
                 >
                   <Icon className="w-6 h-6 text-white" />
                 </motion.a>
-              );
+              )
             })}
           </motion.div>
         </div>
 
+        {/* Enhanced Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -236,20 +261,20 @@ function HeroSection() {
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
             className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center cursor-pointer hover:border-white/50 transition-colors"
             onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
           >
             <motion.div
               animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
               className="w-1 h-3 bg-white/60 rounded-full mt-2"
             />
           </motion.div>
         </motion.div>
       </motion.div>
     </div>
-  );
+  )
 }
 
-export default HeroSection;
+export default HeroSection

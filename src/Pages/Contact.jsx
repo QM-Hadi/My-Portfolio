@@ -83,7 +83,7 @@ function ContactPage() {
       icon: MapPin,
       title: "Location",
       value: "Karachi, Pakistan",
-      href: "https://maps.google.com/?q=Lahore,Pakistan",
+      href: "https://maps.google.com/?q=karachi,Pakistan",
       description: "Available for local meetings",
       color: "from-purple-500 to-pink-500",
       bgColor: "bg-purple-500/10",

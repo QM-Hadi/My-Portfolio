@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react"
+import backGroundImage from "../../Images/Hero_Img.avif" // same background image
 
 function HeroSection() {
   const navigate = useNavigate()
@@ -83,7 +84,7 @@ function HeroSection() {
     <div className="w-full min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="../../Images/Hero_Img.avif"
+          src={backGroundImage}
           alt="backgroundImage"
           className="w-full h-full object-cover"
           loading="eager"

@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation" // ✅ Next.js navigation
 import { motion } from "framer-motion"
 import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react"
+import Image from "next/image"
 import backgroundImage from "../../Images/Hero_Img.avif" // ✅ Placeholder image for local development
 
 function HeroSection() {
@@ -98,11 +99,12 @@ function HeroSection() {
           
           But for v0, we'll use a placeholder that works
         */}
-        <img
+        <Image
           src={backgroundImage}
-          alt="backgroundImage"
-          className="w-full h-full object-cover"
-          loading="eager"
+          alt="background"
+          fill
+          style={{ objectFit: "cover", zIndex: -1 }}
+          priority
         />
         {/* Enhanced gradient overlays for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70" />

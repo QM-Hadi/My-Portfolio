@@ -1,31 +1,22 @@
 "use client"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import {
-    ExternalLink,
-    Github,
-    Eye,
-    Code,
-    Smartphone,
-    Monitor,
-    Tablet,
-    Filter,
-} from "lucide-react"
-import EcommerceImage from "../../Images/Ecommerce Platform.jp"
-import RestaurantImage from "../../Images/Resturant.jpg"
+import { ExternalLink, Github, Eye, Code, Smartphone, Monitor, Tablet, Filter } from "lucide-react"
+import Ecommerce from "../../Images/Ecommerce Platform.jpg"
+import Restaurant from "../../Images/Resturant.jpg"
 
 function WebsitesDesigns() {
     const [activeFilter, setActiveFilter] = useState("All")
-    const [hoveredProject, setHoveredProject] = useState(null)
+    const [hoveredProject, setHoveredProject] = useState < number | null > (null) // ✅ Fixed TypeScript typing
 
+    // Portfolio projects data
     const projects = [
         {
             id: 1,
             title: "E-Commerce Platform",
             category: "E-Commerce",
-            description:
-                "Modern e-commerce platform with advanced filtering, cart functionality, and payment integration.",
-            image: EcommerceImage,
+            description: "Modern e-commerce platform with advanced filtering, cart functionality, and payment integration.",
+            image: Ecommerce,
             technologies: ["React", "Node.js", "MongoDB", "Stripe"],
             liveUrl: "https://example.com",
             githubUrl: "https://github.com/example",
@@ -35,9 +26,8 @@ function WebsitesDesigns() {
             id: 2,
             title: "Restaurant Website",
             category: "Business",
-            description:
-                "Elegant restaurant website with online reservation system and menu showcase.",
-            image: RestaurantImage,
+            description: "Elegant restaurant website with online reservation system and menu showcase.",
+            image: Restaurant,
             technologies: ["Next.js", "TypeScript", "Tailwind"],
             liveUrl: "https://example.com",
             githubUrl: "https://github.com/example",
@@ -47,9 +37,8 @@ function WebsitesDesigns() {
             id: 3,
             title: "Portfolio Dashboard",
             category: "Dashboard",
-            description:
-                "Interactive dashboard for portfolio management with real-time analytics.",
-            image: EcommerceImage,
+            description: "Interactive dashboard for portfolio management with real-time analytics.",
+            image: Ecommerce,
             technologies: ["React", "Chart.js", "Firebase"],
             liveUrl: "https://example.com",
             githubUrl: "https://github.com/example",
@@ -59,9 +48,8 @@ function WebsitesDesigns() {
             id: 4,
             title: "Social Media App",
             category: "Social",
-            description:
-                "Full-stack social media application with real-time messaging and posts.",
-            image: RestaurantImage,
+            description: "Full-stack social media application with real-time messaging and posts.",
+            image: Restaurant,
             technologies: ["MERN", "Socket.io", "JWT"],
             liveUrl: "https://example.com",
             githubUrl: "https://github.com/example",
@@ -71,9 +59,8 @@ function WebsitesDesigns() {
             id: 5,
             title: "Learning Management System",
             category: "Education",
-            description:
-                "Comprehensive LMS with course management, quizzes, and progress tracking.",
-            image: EcommerceImage,
+            description: "Comprehensive LMS with course management, quizzes, and progress tracking.",
+            image: Ecommerce,
             technologies: ["Next.js", "PostgreSQL", "Prisma"],
             liveUrl: "https://example.com",
             githubUrl: "https://github.com/example",
@@ -83,9 +70,8 @@ function WebsitesDesigns() {
             id: 6,
             title: "Real Estate Platform",
             category: "Business",
-            description:
-                "Property listing platform with advanced search and virtual tours.",
-            image: RestaurantImage,
+            description: "Property listing platform with advanced search and virtual tours.",
+            image: Restaurant,
             technologies: ["React", "Express", "MySQL"],
             liveUrl: "https://example.com",
             githubUrl: "https://github.com/example",
@@ -93,20 +79,14 @@ function WebsitesDesigns() {
         },
     ]
 
-    const categories = [
-        "All",
-        "E-Commerce",
-        "Business",
-        "Dashboard",
-        "Social",
-        "Education",
-    ]
+    // Filter categories
+    const categories = ["All", "E-Commerce", "Business", "Dashboard", "Social", "Education"]
 
+    // Filter projects based on active filter
     const filteredProjects =
-        activeFilter === "All"
-            ? projects
-            : projects.filter((project) => project.category === activeFilter)
+        activeFilter === "All" ? projects : projects.filter((project) => project.category === activeFilter)
 
+    // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -142,20 +122,20 @@ function WebsitesDesigns() {
         <section className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-16 lg:py-24 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0">
+                {/* Gradient Orbs */}
                 <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
                 <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
-                <div className="absolute inset-0 opacity-5 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px]" />
+
+                {/* Grid Pattern */}
+                <div className="absolute inset-0 opacity-5">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px]" />
+                </div>
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="text-center mb-16"
-                >
+                <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center mb-16">
                     <motion.div variants={itemVariants} className="mb-6">
                         <span className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-6 py-3 text-sm font-medium text-blue-200">
                             <Monitor className="w-4 h-4" />
@@ -163,11 +143,10 @@ function WebsitesDesigns() {
                         </span>
                     </motion.div>
 
-                    <motion.h2
-                        variants={itemVariants}
-                        className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent"
-                    >
-                        Website Designs
+                    <motion.h2 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                        <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                            Website Designs
+                        </span>
                     </motion.h2>
 
                     <motion.p
@@ -178,6 +157,7 @@ function WebsitesDesigns() {
                         showcases unique design solutions and seamless user experiences.
                     </motion.p>
 
+                    {/* Responsive Icons */}
                     <motion.div variants={itemVariants} className="flex justify-center gap-6 mb-12">
                         <div className="flex items-center gap-2 text-gray-400">
                             <Smartphone className="w-5 h-5 text-green-400" />
@@ -235,12 +215,14 @@ function WebsitesDesigns() {
                                 onMouseEnter={() => setHoveredProject(project.id)}
                                 onMouseLeave={() => setHoveredProject(null)}
                             >
+                                {/* Featured Badge */}
                                 {project.featured && (
                                     <div className="absolute top-4 left-4 z-20 bg-gradient-to-r from-yellow-500 to-orange-500 text-black px-3 py-1 rounded-full text-xs font-bold">
                                         FEATURED
                                     </div>
                                 )}
 
+                                {/* Project Image */}
                                 <div className="relative overflow-hidden">
                                     <img
                                         src={project.image || "/placeholder.svg"}
@@ -248,6 +230,7 @@ function WebsitesDesigns() {
                                         className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
 
+                                    {/* Hover Overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <div className="absolute bottom-4 left-4 right-4 flex gap-3">
                                             <motion.a
@@ -276,6 +259,7 @@ function WebsitesDesigns() {
                                     </div>
                                 </div>
 
+                                {/* Project Info */}
                                 <div className="p-6">
                                     <div className="flex items-center justify-between mb-3">
                                         <span className="text-sm text-blue-400 font-medium">{project.category}</span>
@@ -288,10 +272,11 @@ function WebsitesDesigns() {
 
                                     <p className="text-gray-400 text-sm leading-relaxed mb-4">{project.description}</p>
 
+                                    {/* Technologies */}
                                     <div className="flex flex-wrap gap-2">
-                                        {project.technologies.map((tech, i) => (
+                                        {project.technologies.map((tech, techIndex) => (
                                             <span
-                                                key={i}
+                                                key={techIndex}
                                                 className="px-3 py-1 bg-gray-700/50 text-gray-300 text-xs rounded-full border border-gray-600/50"
                                             >
                                                 {tech}
@@ -300,6 +285,7 @@ function WebsitesDesigns() {
                                     </div>
                                 </div>
 
+                                {/* Hover Effect Border */}
                                 <motion.div
                                     className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/50 rounded-2xl transition-all duration-300"
                                     animate={{
@@ -311,7 +297,7 @@ function WebsitesDesigns() {
                     </AnimatePresence>
                 </motion.div>
 
-                {/* CTA */}
+                {/* Bottom CTA Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}

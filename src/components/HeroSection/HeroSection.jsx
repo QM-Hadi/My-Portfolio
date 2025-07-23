@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // ✅ REPLACED useRouter with useNavigate
 import { motion } from "framer-motion";
 import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react";
+import backgroundImage from "../../Images/Hero_Img.avif"; // Example background image import
 
 function HeroSection() {
   const navigate = useNavigate(); // ✅ Updated
@@ -53,7 +54,7 @@ function HeroSection() {
   const handleResumeDownload = () => {
     try {
       const link = document.createElement("a");
-      link.href = "/placeholder.svg?height=800&width=600&text=Muhammad+Muddassir+Resume";
+      link.href = {backgroundImage};
       link.download = "Muhammad_Muddassir_Resume.pdf";
       document.body.appendChild(link);
       link.click();

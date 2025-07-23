@@ -83,13 +83,12 @@ function HeroSection() {
 
   return (
     <div className="w-full min-h-screen relative overflow-hidden">
+      {/* ✅ Use standard img for background */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/Images/Hero_Img.avif"
+          src="../../Images/Hero_Img.avif"
           alt="background"
-          fill
-          style={{ objectFit: "cover", zIndex: -1 }}
-          priority
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
@@ -127,7 +126,7 @@ function HeroSection() {
         </div>
       </motion.nav>
 
-      {/* <!-- Remaining code remains unchanged --> */}
+      {/* You can reinsert rest of your section here, it’s unchanged */}
     </div>
   )
 }

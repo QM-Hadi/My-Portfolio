@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react"
-import Image from "next/image"
+
 
 function HeroSection() {
   const navigate = useNavigate()
@@ -84,7 +84,7 @@ function HeroSection() {
   return (
     <div className="w-full min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <Image
+        <img
           src="/Images/Hero_Img.avif"
           alt="background"
           fill

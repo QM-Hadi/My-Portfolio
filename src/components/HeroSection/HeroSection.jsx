@@ -1,10 +1,9 @@
-"use client"
-import { useRouter } from "next/navigation"
+import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import { Download, Mail, Github, Linkedin, ArrowRight } from "lucide-react"
 
 function HeroSection() {
-  const router = useRouter()
+  const navigate = useNavigate()
 
   const socialLinks = [
     {
@@ -74,7 +73,7 @@ function HeroSection() {
 
   const handleContactNavigation = () => {
     try {
-      router.push("/contact")
+      navigate("/contact")
     } catch (error) {
       window.location.href = "mailto:mudassirmutalib@gmail.com"
     }
@@ -236,13 +235,13 @@ function HeroSection() {
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center cursor-pointer hover:border-white/50 transition-colors"
             onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
           >
             <motion.div
               animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               className="w-1 h-3 bg-white/60 rounded-full mt-2"
             />
           </motion.div>

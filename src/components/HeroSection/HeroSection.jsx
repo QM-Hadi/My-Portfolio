@@ -101,7 +101,7 @@ function HeroSection() {
         */}
         <Image
           src={backgroundImage}
-          alt="background"
+          alt="backgroundImage"
           fill
           style={{ objectFit: "cover", zIndex: -1 }}
           priority

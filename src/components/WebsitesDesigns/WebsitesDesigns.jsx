@@ -68,7 +68,7 @@ function WebsitesDesigns() {
             image: Annotation2,
             technologies: ["MERN", "Socket.io", "JWT"],
             liveUrl: "https://my-portfolio-one-peach-47.vercel.app/",
-            githubUrl: "https://github.com/example",
+            githubUrl: "https://github.com/QM-Hadi/My-Portfolio",
             featured: false,
         },
         {

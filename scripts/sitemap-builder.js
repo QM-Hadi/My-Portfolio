@@ -1,8 +1,10 @@
-const { SitemapStream, streamToPromise } = require('sitemap');
-const { createWriteStream } = require('fs');
-const path = require('path');
+import { SitemapStream } from 'sitemap';
+import { createWriteStream } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-// Your website routes
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const links = [
   { url: '/', changefreq: 'monthly', priority: 1.0 },
   { url: '/about', changefreq: 'monthly', priority: 0.8 },
@@ -15,7 +17,7 @@ const sitemap = new SitemapStream({
 });
 
 const writeStream = createWriteStream(
-  path.join(__dirname, '../public/sitemap.xml')
+  join(__dirname, '../public/sitemap.xml')
 );
 
 sitemap.pipe(writeStream);
@@ -29,6 +31,4 @@ links.forEach(link => {
 
 sitemap.end();
 
-streamToPromise(sitemap)
-  .then(() => console.log('✅ Sitemap generated successfully'))
-  .catch(err => console.error('❌ Sitemap error:', err));
+console.log('✅ Sitemap generated successfully');

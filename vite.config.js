@@ -1,3 +1,6 @@
+
+console.log('✅ Vite is starting...');
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
